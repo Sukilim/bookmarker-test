@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Bookmarks</h1>
+<% if current_user != nil %>
+  <h2>Welcome, <%= current_user.email %></h2>
+<%end %>
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<% if @bookmarks != nil %>
+  <tbody>
+
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= bookmark.url %></td>
+        <td><%= bookmark.user_id %></td>
+        <td><%= link_to 'Show', bookmark %></td>
+        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to 'Add bookmark', new_bookmark_path %>
