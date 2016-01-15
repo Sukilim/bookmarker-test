@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
-	
-	has_many :bookmarks
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: {case_sensitive: false}
-	has_secure_password
+	validates :email, presence: true
 	validates :password, presence: true
 
+	has_many :bookmarks
+
+	def authenticate(password)
+		return self if password == password
+	end
 end

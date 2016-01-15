@@ -14,6 +14,7 @@ RSpec.describe SessionsController, type: :controller do
           }
         }
       }
+
       let(:user_mock) { double(User) }
 
       it "sets session user_id and redirect to bookmarks" do
